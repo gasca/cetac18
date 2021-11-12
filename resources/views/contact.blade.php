@@ -1,12 +1,21 @@
 @extends('layout')
 @section('title', 'Contacto')
 @section('content')
-    <h1>Contacto</h1>    
+    {{-- <h1>{{ __('Contact') }}</h1>   utilizando traduccion lang/es.json --}}
+    <h1>{{ __('Contact') }}</h1> 
     <form method="POST" action="{{ route('contact')}}">
-        <input type="text" name="name" placeholder="Nombre"><br>
-        <input type="text" name="email" placeholder="ing.eduardogb@cetac.com"><br>
-        <input type="subject" placeholder="Asunto"><br>
-        <textarea   name="content" placeholder="Mensaje"></textarea><br>
+        @csrf
+        <input type="text" name="name" placeholder="Nombre" value="{{ old('name')}}"><br> 
+        {!! $errors->first('name', '<small>:message</small><br>') !!}
+
+        <input type="text" name="email" placeholder="ing.eduardogb@cetac.com" value="{{ old('email')}}""> <br>
+        {!! $errors->first('email', '<small>:message</small><br>') !!}
+
+        <input type="subject" name="subject" placeholder="Asunto" value="{{ old('subject')}}"><br>
+        {!! $errors->first('subject', '<small>:message</small><br>') !!}
+        
+        <textarea   name="content" placeholder="Mensaje" >{{ old('content')}}</textarea><br>
+        {!! $errors->first('content', '<small>:message</small><br>') !!}
         <button>Enviar</button>
 
     </form>

@@ -21,7 +21,7 @@ use App\Http\Controllers\MessagesController;
 })->name('home');
  */
 
-
+    App::setLocale('es'); //lenguaje por default
 
 
  Route::view('/', 'home')->name('home');
@@ -29,4 +29,4 @@ use App\Http\Controllers\MessagesController;
 
  Route::view('/acerca', 'about')->name('about');
  Route::view('/contacto', 'contact')->name('contact');
- Route::post('contact',  [MessagesController::class, 'store']);
+ Route::post('/contacto',  [MessagesController::class, 'store']);
