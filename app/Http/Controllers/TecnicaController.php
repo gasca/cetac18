@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class TecnicaController extends Controller
@@ -14,14 +14,16 @@ class TecnicaController extends Controller
     public function index()
     {
         //
-        $carreras = [
-            ['title' => 'Programación'],
-            ['title' => 'Laboratorista'],
-            ['title' => 'Mecatronica'],
-             
-        ];
+        
+        //latest ordena en forma desendente
+        // paginate(2), numero de  datos por pagina visibles defualt 15.
+            return view('Tecnica.index', 
+            [
+                'carreras' => Project::latest()
+                             ->paginate()
 
-            return view('technical', compact('carreras'));
+                
+            ]);
 
     }
 
@@ -54,7 +56,18 @@ class TecnicaController extends Controller
      */
     public function show($id)
     {
-        //
+        // vamos a pasar $project a una vista para su diseño
+       // $project = Project::find($id);
+
+        return view('Tecnica.show',[
+                    'project' => Project::find($id)
+
+
+        ]);
+
+
+
+
     }
 
     /**

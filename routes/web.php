@@ -21,11 +21,13 @@ use App\Http\Controllers\MessagesController;
 })->name('home');
  */
 
-    App::setLocale('es'); //lenguaje por default
+ //   App::setLocale('es'); //lenguaje por default
 
 
  Route::view('/', 'home')->name('home');
- Route::get('/tecnica', [TecnicaController::class, 'index'])->name('tecnica');
+ Route::get('/tecnica', [TecnicaController::class, 'index'])->name('tecnica.index');
+ Route::get('/tecnica/{id}', [TecnicaController::class, 'show'])->name('tecnica.show');
+     
 
  Route::view('/acerca', 'about')->name('about');
  Route::view('/contacto', 'contact')->name('contact');
